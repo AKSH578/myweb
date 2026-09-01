@@ -63,18 +63,18 @@
   max-width: 270px;
   max-height: 195px;
 }
-.logo-visible { opacity: 1; transform: rotate(0deg) scale(1); filter: blur(0); }
-.logo-hidden { opacity: 0; transform: rotate(0deg) scale(.85); filter: blur(3px); pointer-events: none; }
-.logo-swap-out { animation: logo-swap-out 800ms ease-in forwards; pointer-events: none; }
-.logo-swap-in { animation: logo-swap-in 800ms ease-out forwards; }
-@keyframes logo-swap-out {
-  0% { opacity: 1; transform: rotate(0deg) scale(1); filter: blur(0); }
-  100% { opacity: 0; transform: rotate(-8deg) scale(.94); filter: blur(2px); }
-}
-@keyframes logo-swap-in {
-  0% { opacity: 0; transform: rotate(8deg) scale(.94); filter: blur(2px); }
-  100% { opacity: 1; transform: rotate(0deg) scale(1); filter: blur(0); }
-}
+	.logo-visible { opacity: 1; transform: scale(1); filter: blur(0); }
+	.logo-hidden { opacity: 0; transform: scale(.96); filter: blur(3px); pointer-events: none; }
+	.logo-swap-out { animation: logo-swap-out 800ms ease-in forwards; pointer-events: none; }
+	.logo-swap-in { animation: logo-swap-in 800ms ease-out forwards; }
+	@keyframes logo-swap-out {
+	  0% { opacity: 1; transform: scale(1); filter: blur(0); }
+	  100% { opacity: 0; transform: scale(.96); filter: blur(2px); }
+	}
+	@keyframes logo-swap-in {
+	  0% { opacity: 0; transform: scale(.96); filter: blur(2px); }
+	  100% { opacity: 1; transform: scale(1); filter: blur(0); }
+	}
 @media (prefers-reduced-motion: reduce) {
   .radar-sweep, .radar-scan-dot, .logo-swap-out, .logo-swap-in, .radar-logo-ring { animation: none !important; }
   .logo-visible { opacity: 1; transform: none; filter: none; }
