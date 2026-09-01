@@ -27,8 +27,8 @@
 .tech-hud-header { background: var(--navy); color: white; padding: 8px 14px; font-family: monospace; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--navy); }
 .tech-hud-body { padding: 18px; }
 .radar-circle { position: relative; width: 130px; height: 130px; border-radius: 50%; border: 1px solid rgba(36,87,255,0.3); display: flex; align-items: center; justify-content: center; background: radial-gradient(circle, rgba(36,87,255,0.06) 0%, transparent 70%); }
-.radar-sweep { position: absolute; inset: 0; border-radius: 50%; background: conic-gradient(from 0deg, rgba(36,87,255,0.35) 0deg, transparent 60deg, transparent 360deg); animation: radar-spin 4s linear infinite; pointer-events: none; }
-@keyframes radar-spin { from { transform: rotate(0deg); }
+.radar-sweep { position: absolute; inset: 0; border-radius: 50%; background: conic-gradient(from 0deg, rgba(36,87,255,0.35) 0deg, transparent 60deg, transparent 360deg); animation: radar-spin-clockwise 4s linear infinite; pointer-events: none; }
+@keyframes radar-spin-clockwise { from { transform: rotate(0deg); }
 /* ── Radar visual connection styles ── */
 .radar-inner-bg {
   background: radial-gradient(circle, rgba(36,87,255,0.12) 0%, rgba(245,243,236,0.98) 40%, rgba(255,255,255,1) 100%);
@@ -53,6 +53,23 @@
   height: 52%;
   max-width: 270px;
   max-height: 195px;
+}
+.logo-visible { opacity: 1; transform: rotate(0deg) scale(1); filter: blur(0); }
+.logo-hidden { opacity: 0; transform: rotate(0deg) scale(.85); filter: blur(3px); pointer-events: none; }
+.logo-swap-out { animation: logo-swap-out 800ms ease-in forwards; pointer-events: none; }
+.logo-swap-in { animation: logo-swap-in 800ms ease-out forwards; }
+@keyframes logo-swap-out {
+  0% { opacity: 1; transform: rotate(0deg) scale(1); filter: blur(0); }
+  100% { opacity: 0; transform: rotate(-180deg) scale(.85); filter: blur(3px); }
+}
+@keyframes logo-swap-in {
+  0% { opacity: 0; transform: rotate(180deg) scale(.85); filter: blur(3px); }
+  100% { opacity: 1; transform: rotate(0deg) scale(1); filter: blur(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .radar-sweep, .radar-scan-dot, .logo-swap-out, .logo-swap-in, .radar-logo-ring { animation: none !important; }
+  .logo-visible { opacity: 1; transform: none; filter: none; }
+  .logo-hidden { opacity: 0; transform: none; filter: none; }
 }
 .radar-connection-glow {
   box-shadow: 0 0 0 0 rgba(36,87,255,0);

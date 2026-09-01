@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import {
   ArrowUpRight,
   BrainCircuit,
@@ -211,16 +211,21 @@ export function Navbar() {
 function MovingRadarLogo() {
   const [showGndu, setShowGndu] = useState(false)
   const [transitioning, setTransitioning] = useState(false)
+  const swapTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
     const interval = setInterval(() => {
       setTransitioning(true)
-      setTimeout(() => {
+      swapTimeoutRef.current = setTimeout(() => {
         setShowGndu((prev) => !prev)
-        setTimeout(() => setTransitioning(false), 600)
+        swapTimeoutRef.current = setTimeout(() => setTransitioning(false), 600)
       }, 400)
     }, 4000)
-    return () => clearInterval(interval)
+
+    return () => {
+      clearInterval(interval)
+      if (swapTimeoutRef.current) clearTimeout(swapTimeoutRef.current)
+    }
   }, [])
 
   return (
@@ -245,16 +250,16 @@ function MovingRadarLogo() {
         <img
           src="/armss-emblem.png"
           alt="ARMSS Logo Emblem"
-          className={`absolute radar-logo-size object-contain z-10 drop-shadow-md transition-all duration-1000 ${
-            showGndu ? 'opacity-0 scale-[0.85] blur-[3px]' : 'opacity-100 scale-100 blur-0'
+          className={`absolute radar-logo-size object-contain z-10 drop-shadow-md ${
+            transitioning ? (showGndu ? 'logo-swap-in' : 'logo-swap-out') : showGndu ? 'logo-hidden' : 'logo-visible'
           }`}
         />
         {/* GNDU Logo — transparent background, same size as ARMSS */}
         <img
           src="/gndu-logo-transparent.png"
           alt="GNDU Logo"
-          className={`absolute radar-logo-size-gndu object-contain z-10 drop-shadow-md transition-all duration-1000 ${
-            showGndu ? 'opacity-100 scale-100 blur-0' : 'opacity-0 scale-[0.85] blur-[3px]'
+          className={`absolute radar-logo-size-gndu object-contain z-10 drop-shadow-md ${
+            transitioning ? (showGndu ? 'logo-swap-in' : 'logo-swap-out') : showGndu ? 'logo-visible' : 'logo-hidden'
           }`}
         />
         {/* Crosshairs */}
