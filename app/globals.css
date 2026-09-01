@@ -28,7 +28,16 @@
 .tech-hud-body { padding: 18px; }
 .radar-circle { position: relative; width: 130px; height: 130px; border-radius: 50%; border: 1px solid rgba(36,87,255,0.3); display: flex; align-items: center; justify-content: center; background: radial-gradient(circle, rgba(36,87,255,0.06) 0%, transparent 70%); }
 .radar-sweep { position: absolute; inset: 0; border-radius: 50%; background: conic-gradient(from 0deg, rgba(36,87,255,0.35) 0deg, transparent 60deg, transparent 360deg); animation: radar-spin-clockwise 4s linear infinite; pointer-events: none; }
-@keyframes radar-spin-clockwise { from { transform: rotate(0deg); }
+.radar-sweep-clockwise { animation-name: radar-spin-clockwise; }
+.radar-sweep-anticlockwise { animation-name: radar-spin-anticlockwise; }
+@keyframes radar-spin-clockwise {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes radar-spin-anticlockwise {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
 /* ── Radar visual connection styles ── */
 .radar-inner-bg {
   background: radial-gradient(circle, rgba(36,87,255,0.12) 0%, rgba(245,243,236,0.98) 40%, rgba(255,255,255,1) 100%);
@@ -95,8 +104,10 @@
   z-index: 20;
   animation: radar-scan-orbit 4s linear infinite;
   pointer-events: none;
-}
-@keyframes radar-scan-orbit {
+  }
+  .radar-scan-clockwise { animation-name: radar-scan-orbit; }
+  .radar-scan-anticlockwise { animation-name: radar-scan-orbit-anticlockwise; }
+  @keyframes radar-scan-orbit {
   0% { transform: rotate(0deg) translateX(calc(min(50vw, 180px) * 0.48)) rotate(0deg); opacity: 1; }
   45% { opacity: 1; }
   50% { opacity: 0.3; }
@@ -104,11 +115,18 @@
   95% { opacity: 1; }
   100% { transform: rotate(360deg) translateX(calc(min(50vw, 180px) * 0.48)) rotate(-360deg); opacity: 1; }
 }
+@keyframes radar-scan-orbit-anticlockwise {
+  0% { transform: rotate(0deg) translateX(calc(min(50vw, 180px) * 0.48)) rotate(0deg); opacity: 1; }
+  45% { opacity: 1; }
+  50% { opacity: 0.3; }
+  55% { opacity: 1; }
+  95% { opacity: 1; }
+  100% { transform: rotate(-360deg) translateX(calc(min(50vw, 180px) * 0.48)) rotate(360deg); opacity: 1; }
+}
 .radar-label-container {
   white-space: nowrap;
   text-shadow: 0 1px 4px rgba(245,243,236,0.9);
 }
- to { transform: rotate(360deg); } }
 .tech-stat-strip { background: var(--navy); color: white; border-top: 1px solid #1e3357; border-bottom: 1px solid #1e3357; }
 .tech-stat-item { border-right: 1px solid #1e3357; padding: 24px 20px; }
 .tech-stat-num { font-size: 34px; font-weight: 900; font-family: monospace; color: #60a5fa; letter-spacing: -0.05em; line-height: 1; }
