@@ -239,9 +239,9 @@ function MovingRadarLogo() {
       {/* Inner radar circle */}
       <div className="relative w-36 h-36 sm:w-56 sm:h-56 md:w-72 md:h-72 rounded-full border border-[var(--blue)] radar-inner-bg flex items-center justify-center shadow-xl overflow-hidden">
         {/* Radar beam sweep */}
-        <div className={`radar-sweep ${showGndu ? 'radar-sweep-anticlockwise' : 'radar-sweep-clockwise'}`} />
+        <div className="radar-sweep radar-sweep-clockwise" />
         {/* Pulsing scan dot on sweep line */}
-        <div className={`radar-scan-dot ${showGndu ? 'radar-scan-anticlockwise' : 'radar-scan-clockwise'}`} />
+        <div className="radar-scan-dot radar-scan-clockwise" />
         {/* Opaque backing to hide radar elements behind logos */}
         <div className="absolute w-[78%] h-[78%] rounded-full bg-[var(--paper)] z-[8]" />
         {/* Shared logo background ring */}
