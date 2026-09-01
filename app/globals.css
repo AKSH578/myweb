@@ -69,10 +69,10 @@
 .logo-swap-in { animation: logo-swap-in 800ms ease-out forwards; }
 @keyframes logo-swap-out {
   0% { opacity: 1; transform: rotate(0deg) scale(1); filter: blur(0); }
-  100% { opacity: 0; transform: rotate(-180deg) scale(.85); filter: blur(3px); }
+  100% { opacity: 0; transform: rotate(-8deg) scale(.94); filter: blur(2px); }
 }
 @keyframes logo-swap-in {
-  0% { opacity: 0; transform: rotate(180deg) scale(.85); filter: blur(3px); }
+  0% { opacity: 0; transform: rotate(8deg) scale(.94); filter: blur(2px); }
   100% { opacity: 1; transform: rotate(0deg) scale(1); filter: blur(0); }
 }
 @media (prefers-reduced-motion: reduce) {

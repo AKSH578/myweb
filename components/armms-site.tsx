@@ -242,10 +242,8 @@ function MovingRadarLogo() {
         <div className="radar-sweep radar-sweep-clockwise" />
         {/* Pulsing scan dot on sweep line */}
         <div className="radar-scan-dot radar-scan-clockwise" />
-        {/* Opaque backing to hide radar elements behind logos */}
-        <div className="absolute w-[78%] h-[78%] rounded-full bg-[var(--paper)] z-[8]" />
-        {/* Shared logo background ring */}
-        <div className="absolute radar-logo-ring animate-spin [animation-duration:30s] z-[9]" />
+        {/* Clean logo plate keeps the mark crisp above the sweep */}
+        <div className="absolute w-[78%] h-[78%] rounded-full bg-[var(--paper)]/95 z-[8] shadow-[inset_0_0_0_1px_rgba(36,87,255,0.1)]" />
         {/* ARMSS Logo */}
         <img
           src="/armss-emblem.png"
@@ -272,16 +270,7 @@ function MovingRadarLogo() {
           {showGndu ? 'GNDU — GURU NANAK DEV UNIVERSITY' : 'ARMSS — STUDENT SOCIETY'}
         </span>
       </div>
-      {/* Thumbnail pair — both logos visible together */}
-      <div className="flex items-center gap-2 mt-2 opacity-60">
-        <div className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full border border-[var(--blue)] flex items-center justify-center transition-all duration-500 ${!showGndu ? 'border-[var(--blue)] shadow-[0_0_6px_rgba(36,87,255,0.4)] opacity-100' : 'opacity-50'}`}>
-          <img src="/armss-emblem.png" alt="ARMSS" className="w-4 h-4 sm:w-5 sm:h-5 object-contain" />
-        </div>
-        <span className="font-mono text-[7px] text-[var(--blue)] font-bold">↔</span>
-        <div className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full border border-[var(--blue)] flex items-center justify-center transition-all duration-500 ${showGndu ? 'border-[var(--blue)] shadow-[0_0_6px_rgba(36,87,255,0.4)] opacity-100' : 'opacity-50'}`}>
-          <img src="/gndu-logo-transparent.png" alt="GNDU" className="w-4 h-4 sm:w-5 sm:h-5 object-contain" />
-        </div>
-      </div>
+
     </div>
   )
 }
